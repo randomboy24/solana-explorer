@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Appbar() {
     return (
         <div className="flex justify-center   h-20 items-center bg-[#242424] ">
-            <div className="flex justify-between   w-[70%] items-center">
+            <div className="flex justify-between w-[90%]  sm:w-[85%] md:w-[75%] lg:w-[70%] xl:w-[60%]    items-center">
                 <div>
                 <svg width="360" height="40" viewBox="0 0 919 79" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0)">

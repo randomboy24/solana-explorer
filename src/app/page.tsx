@@ -1,6 +1,6 @@
 "use client"
 
-import React, { FC, useMemo } from 'react';
+import React, { FC, useContext, useMemo } from 'react';
 import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import { UnsafeBurnerWalletAdapter } from '@solana/wallet-adapter-wallets';
@@ -15,19 +15,26 @@ import { clusterApiUrl } from '@solana/web3.js';
 import '@solana/wallet-adapter-react-ui/styles.css';
 import Appbar from './components/Appbar';
 import SearchBar from './components/SearchBar';
+import { AccountInfoContext, AccountInfoProvider, AddressContext, AddressProvider } from './context';
+import AccountInfo from './components/AccountInfo';
 
 const Home = () => {
   return (
-    <ConnectionProvider endpoint='https://api.devnet.solana.com'>
-      <WalletProvider wallets={[]}>
-        <WalletModalProvider>
-          <div className='bg-[#111] h-screen w-screen'>
-            <Appbar/> 
-            <SearchBar />
-          </div>
-        </WalletModalProvider>
-      </WalletProvider>
-    </ConnectionProvider>
+    <AddressProvider>
+      <AccountInfoProvider>
+        <ConnectionProvider endpoint='https://api.devnet.solana.com'>
+          <WalletProvider wallets={[]}>
+            <WalletModalProvider>
+              <div className='bg-[#111] h-screen w-screen'>
+                <Appbar/>   
+                <SearchBar />
+                <AccountInfo/>  
+              </div>
+            </WalletModalProvider>
+          </WalletProvider>
+        </ConnectionProvider>
+      </AccountInfoProvider>
+    </AddressProvider>
   )
 }
 
